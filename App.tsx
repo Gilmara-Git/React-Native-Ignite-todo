@@ -1,11 +1,9 @@
-// import React from 'react';
 import { StatusBar } from 'react-native';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { useFonts, Inter_400Regular, Inter_700Bold} from '@expo-google-fonts/inter';
 import { Home } from './src/screens/Home';
-import { LinearGradientBackground } from './src/screens/LinearGradientBackground';
 import themes from './src/themes/themes';
-import styles from './src/screens/Home/styles';
+
 
 export default function App() {
   const [ fontsLoaded ] = useFonts({
@@ -22,7 +20,7 @@ export default function App() {
       <StatusBar barStyle="light-content" backgroundColor='transparent'
         translucent
       />
-      {/* <LinearGradientBackground /> */}
+
       <Home/>
        
     </SafeAreaView>
