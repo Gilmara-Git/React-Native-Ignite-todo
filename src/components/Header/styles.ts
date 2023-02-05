@@ -5,7 +5,7 @@ import themes from '../../themes/themes';
 const styles = StyleSheet.create({
     container:{     
         backgroundColor: themes.colors.gray700,
-        height: 175,
+        height: 171,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
