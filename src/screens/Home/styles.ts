@@ -18,11 +18,11 @@ const styles =  StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 25,
-        borderRadius: 8
+        borderRadius: 24
     
     },
     completedTodosText:{
-        fontFamily: themes.fonts.InterBold700,
+        fontFamily: themes.fonts.InterRegular400,
         textAlign: 'center',
         fontSize: 20,
         color: themes.colors.gray300,
