@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     },
     input:{
         height: 54,
-        width: 271,
+        width: 241,
         backgroundColor: themes.colors.gray700Desc_2,
         fontSize: 16,
         fontFamily: themes.fonts.InterRegular400,
