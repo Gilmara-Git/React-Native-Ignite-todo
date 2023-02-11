@@ -1,5 +1,5 @@
-import { View, Image } from "react-native";
 import styles from "./styles";
+import { View } from "react-native";
 import Rocket from "../../assets/rocket.svg";
 import To from "../../assets/to.svg";
 import Do from "../../assets/do.svg";

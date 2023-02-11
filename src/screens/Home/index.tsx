@@ -1,12 +1,12 @@
+import styles from "./styles";
+import themes from "../../themes/themes";
+import { useEffect, useState } from "react";
+import { View, FlatList, Alert, Text, TouchableOpacity } from "react-native";
 import { Header } from "../../components/Header";
 import { Statistics } from "../../components/Statistics";
 import { FallbackComponent } from "../../components/FallbackComponent";
 import { TodoItem } from "../../components/TodoItem";
 import { DataEntry } from "../../components/DataEntry";
-import { View, FlatList, Alert, Text, TouchableOpacity } from "react-native";
-import styles from "./styles";
-import themes from "../../themes/themes";
-import { useEffect, useState } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
@@ -14,7 +14,7 @@ export const Home = () => {
   const [todoList, setTodoList] = useState<string[]>([]);
   const [completedTodoList, setCompleteTodoList] = useState<string[]>([]);
   const [allTodosCompleted, setAllTodosCompleted] = useState(false);
-  const [ showCongratScreen , setShowCongratScreen ] = useState(false);
+  const [showCongratScreen, setShowCongratScreen] = useState(false);
 
   const addTodoHandler = (todo: string) => {
     if (!todo.trim()) {
@@ -65,9 +65,9 @@ export const Home = () => {
     }
   }, [todoList, completedTodoList]);
 
-  const closeCongratScreenHandler =()=>{
-    setShowCongratScreen(false)
-  }
+  const closeCongratScreenHandler = () => {
+    setShowCongratScreen(false);
+  };
 
   return (
     <>
@@ -77,17 +77,21 @@ export const Home = () => {
         {allTodosCompleted && showCongratScreen ? (
           <View style={styles.completedTodosView}>
             <View style={styles.closeCompletedTodosButton}>
-              <TouchableOpacity 
-              activeOpacity={0.5}
-              onPress={closeCongratScreenHandler}
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={closeCongratScreenHandler}
               >
-               <AntDesign name='closecircleo' size={20} color={themes.colors.purple}/>
+                <AntDesign
+                  name="closecircleo"
+                  size={20}
+                  color={themes.colors.purple}
+                />
               </TouchableOpacity>
             </View>
             <Text style={styles.completedTodosText}>
               Congratulations {"\n"} All Todos are completed !!
             </Text>
-            <FontAwesome name="heart" color={themes.colors.blue} size={120}/>
+            <FontAwesome name="heart" color={themes.colors.blue} size={120} />
           </View>
         ) : (
           <>
