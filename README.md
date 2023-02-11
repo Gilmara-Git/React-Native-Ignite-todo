@@ -48,11 +48,14 @@ This my First **React Native** challenge developed during my **Ignite bootcamp**
 - **Navigate** to the project 's folder 
 - Run **npx expo start**
 
+
+Thanks [Rocketseat](https://www.instagram.com/rocketseat/?igshid=Yzg5MTU1MDY%3D) 🚀
+
 **Instructor Mobile**: 
 [Rodrigo Gonçalves](https://www.linkedin.com/in/rodrigo-gon%C3%A7alves-santana/)
 
 
-Thanks [Rocketseat](https://www.instagram.com/rocketseat/?igshid=Yzg5MTU1MDY%3D) 
+
 Made with 💗 by [Gilmara Pimentel](https://www.linkedin.com/in/gilmara-pimentel/)
 
 
