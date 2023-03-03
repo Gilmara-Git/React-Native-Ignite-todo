@@ -23,10 +23,12 @@ This my First **React Native** challenge developed during my **Ignite bootcamp**
 - Whenever a task is completed, there will be a change on its text style.
 - There are validations to prevent entering duplicated or blank tasks.
 - You are prompted to an alert message to confirm whenever you want to remove a task. 
-##Beyond:
+# Beyond:
 - Added a **congratulations** page whenever all tasks are marked as completed.
 - Changed the icon that indicates a task has been completed to a **heart** icon.
 - Disabled the **trash** button whenever a task is currently marked as completed.
+- Added ***AsyncStorage*** to store the ***TodoList*** into the user's device.
+- Added a customized ***class AppError()*** to handle errors.
 
 # Motivation
 
@@ -41,6 +43,7 @@ This my First **React Native** challenge developed during my **Ignite bootcamp**
 - Expo google fonts
 - Typescript
 - Expo Vector icons
+- AsyncStorage installed with Expo
 
 # To run the project
 - Clone it

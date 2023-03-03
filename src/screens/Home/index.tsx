@@ -2,13 +2,19 @@ import styles from "./styles";
 import themes from "../../themes/themes";
 import { useEffect, useState } from "react";
 import { View, FlatList, Alert, Text, TouchableOpacity } from "react-native";
+
 import { Header } from "../../components/Header";
-import { Statistics } from "../../components/Statistics";
-import { FallbackComponent } from "../../components/FallbackComponent";
 import { TodoItem } from "../../components/TodoItem";
 import { DataEntry } from "../../components/DataEntry";
+import { Statistics } from "../../components/Statistics";
+import { FallbackComponent } from "../../components/FallbackComponent";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { createTodo } from '../../storage/todos/createTodo';
+import { getAllTodoTasks } from '../../storage/todos/getAllTodoTasks';
+import { removeStoredTodo } from '../../storage/todos/removeStoredTodo';
+
+import  { AppError } from '../../utils/AppError';
 
 export const Home = () => {
   const [todoList, setTodoList] = useState<string[]>([]);
@@ -16,16 +22,48 @@ export const Home = () => {
   const [allTodosCompleted, setAllTodosCompleted] = useState(false);
   const [showCongratScreen, setShowCongratScreen] = useState(false);
 
-  const addTodoHandler = (todo: string) => {
+  const fetchAllTodoTasks = async()=>{
+    try{
+      const allTasks = await getAllTodoTasks();
+      setTodoList(allTasks);
+
+
+    }catch(error){
+      Alert.alert(error);
+    }
+  }
+  
+  const addTodoHandler = async (todo: string) => {
     if (!todo.trim()) {
       return Alert.alert('Please enter a valid "todo" to your list.');
     }
-    if (todoList.includes(todo)) {
-      return Alert.alert("This todo has already been registered");
+   
+    try{
+      await createTodo(todo);
+      const updatedTodoTasks = await getAllTodoTasks();
+      setTodoList(updatedTodoTasks);
+    
+
+
+    }catch(error){
+      if(error instanceof AppError ){
+         Alert.alert(error.message);
+      }else{
+        Alert.alert(error)
+      }
+
     }
-    setTodoList((prevState) => [...prevState, todo]);
   };
 
+  const removeTodo = async (todo: string)=>{
+    try{
+      await removeStoredTodo(todo);
+      fetchAllTodoTasks();
+     
+    }catch(error){
+      Alert.alert(error)
+    }
+  }
   const removeTodoHandler = (todo: string) => {
     Alert.alert(
       "Remove Todo",
@@ -33,11 +71,7 @@ export const Home = () => {
       [
         {
           text: "Yes",
-          onPress: () => {
-            setTodoList((prevState) =>
-              prevState.filter((item) => item !== todo)
-            );
-          },
+          onPress: () => {removeTodo(todo)},
           style: "destructive",
         },
         {
@@ -46,10 +80,11 @@ export const Home = () => {
         },
       ]
     );
+ 
   };
 
-  const toggleCompleteIncompleteTodo = (todo: string) => {
-    if (!completedTodoList.includes(todo)) {
+  const toggleCompleteIncompleteTodo = async(todo: string) => {
+       if (!completedTodoList.includes(todo)) {
       setCompleteTodoList((prevState) => [...prevState, todo]);
     } else {
       setCompleteTodoList((prevState) =>
@@ -58,6 +93,12 @@ export const Home = () => {
     }
   };
 
+  const closeCongratScreenHandler = () => {
+    setShowCongratScreen(false);
+  };
+
+  
+
   useEffect(() => {
     if (todoList.length !== 0 && completedTodoList.length === todoList.length) {
       setAllTodosCompleted(true);
@@ -65,10 +106,10 @@ export const Home = () => {
     }
   }, [todoList, completedTodoList]);
 
-  const closeCongratScreenHandler = () => {
-    setShowCongratScreen(false);
-  };
-
+  useEffect(()=>{
+    fetchAllTodoTasks();
+  },[])
+  
   return (
     <>
       <Header />
